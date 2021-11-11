@@ -6,10 +6,36 @@ using System.Text;
 
 namespace DataStructures.LinkedList.SinglyLinkedList.Concrete
 {
-    public partial class SinglyLinkedList<T>:IEnumerable<T>
+    public partial class SinglyLinkedList<T> : IEnumerable<T>
     {
         public SinglyLinkedListNode<T> Head { get; set; }
         private bool IsHeadNull => Head is null;
+        public int Count
+        {
+            get
+            {
+                int start = 0;
+                var current = Head;
+                while (current is not null)
+                {
+                    start++;
+                    current = current.Next;
+                }
+                return start;
+            }
+        }
+        public SinglyLinkedListNode<T> GetFirst => Head;
+
+        public SinglyLinkedListNode<T> GetLast
+        {
+            get
+            {
+                var temp = Head;
+                while (temp.Next is not null)
+                    temp = temp.Next;
+                return temp;
+            }
+        }
 
         #region Constructors
         public SinglyLinkedList()
@@ -40,9 +66,9 @@ namespace DataStructures.LinkedList.SinglyLinkedList.Concrete
                 throw new Exception("List is null");
             }
             var current = Head;
-            while(current != null)
+            while (current != null)
             {
-                if(current.Value.Equals(value))
+                if (current.Value.Equals(value))
                 {
                     result = current;
                     return result;
@@ -51,6 +77,7 @@ namespace DataStructures.LinkedList.SinglyLinkedList.Concrete
             }
             return result;
         }
+
 
     }
 }

@@ -8,6 +8,7 @@ namespace DataStructures.LinkedList.SinglyLinkedList.Concrete
 {
     public partial class SinglyLinkedList<T> : IEnumerable<T>
     {
+
         public IEnumerator<T> GetEnumerator()
         {
             return new SinglyLinkedListEnumerator<T>(Head);

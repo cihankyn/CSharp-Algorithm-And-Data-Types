@@ -38,7 +38,8 @@ namespace Apps
             //Find();
             //LinqExpressions();
             //Order();
-            OrderByDescending();
+            //OrderByDescending();
+            //GetOperations();
             //Print();
         }
         public static void ConstuctorOverloads()
@@ -180,9 +181,6 @@ namespace Apps
             foreach (var item in result)
                 Console.WriteLine(item);
         }
-
-
-
         private static void Order()
         {
             linkedList.AddRange(Product.CreateFakeDatas(6));
@@ -219,6 +217,18 @@ namespace Apps
             Console.WriteLine();
             Console.WriteLine("After ordered Original list");
             Print();
+
+        }
+        private static void GetOperations()
+        {
+    
+            linkedList.AddRange(Product.CreateFakeDatas(10));
+            Console.WriteLine($"Linkedlist items count : {linkedList.Count}");
+            Print();
+            Console.WriteLine();
+            Console.WriteLine($"First item : {linkedList.GetFirst}");
+            Console.WriteLine();
+            Console.WriteLine($"Last item : {linkedList.GetLast}");
 
         }
         private static void Print()
