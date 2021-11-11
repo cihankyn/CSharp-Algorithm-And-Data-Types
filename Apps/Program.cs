@@ -14,7 +14,7 @@ namespace Apps
         static void Main(string[] args)
         {
             //ArrayOperations.Start();
-            //OneWayListOperations.Start();
+            OneWayListOperations.Start();
             Console.ReadKey();
         }
 
@@ -37,6 +37,8 @@ namespace Apps
             //SendCustomLinkedListTOList();
             //Find();
             //LinqExpressions();
+            //Order();
+            OrderByDescending();
             //Print();
         }
         public static void ConstuctorOverloads()
@@ -69,7 +71,7 @@ namespace Apps
             linkedList.AddLast(Product.GetFakeProduct());
 
             //linkedList.AddAfter(linkedList.Head.Next.Next, Product.GetFakeProduct());
-            linkedList.AddAfter(linkedList.Head,new SinglyLinkedListNode<Product>(Product.GetFakeProduct()));
+            linkedList.AddAfter(linkedList.Head, new SinglyLinkedListNode<Product>(Product.GetFakeProduct()));
             Print();
         }
         private static void AddBefore()
@@ -81,7 +83,7 @@ namespace Apps
             linkedList.AddLast(Product.GetFakeProduct());
 
             //linkedList.AddBefore(linkedList.Head.Next.Next.Next.Next,Product.GetFakeProduct());
-            linkedList.AddBefore(linkedList.Head.Next,new SinglyLinkedListNode<Product>(Product.GetFakeProduct()));
+            linkedList.AddBefore(linkedList.Head.Next, new SinglyLinkedListNode<Product>(Product.GetFakeProduct()));
             Print();
         }
         private static void AddFirst()
@@ -133,16 +135,16 @@ namespace Apps
             linkedList.AddRange(Product.CreateFakeDatas(8));
             Console.WriteLine("Before Remove");
             Print();
-           
+
             Console.WriteLine();
             Console.WriteLine("Deleted : " + linkedList.RemoveLast());
             Console.WriteLine("Deleted : " + linkedList.RemoveLast());
             Print();
         }
-        public static void GetEnumerator()
+        private static void GetEnumerator()
         {
             linkedList.AddRange(Product.CreateFakeDatas(4));
-            foreach(var item in linkedList)
+            foreach (var item in linkedList)
             {
                 Console.WriteLine(item);
             }
@@ -169,7 +171,7 @@ namespace Apps
             linkedList.AddRange(Product.CreateFakeDatas(10));
             //Query syntax
             var result = from item in linkedList
-                         where item.Id <= 3 || item.Id>6
+                         where item.Id <= 3 || item.Id > 6
                          select item;
             //Method Syntax
             result = linkedList.Where(x => x.Id <= 2 || x.Id > 7).ToList();
@@ -180,7 +182,46 @@ namespace Apps
         }
 
 
-        public static void Print()
+
+        private static void Order()
+        {
+            linkedList.AddRange(Product.CreateFakeDatas(6));
+            Console.WriteLine("Before Order");
+            Print();
+            Console.WriteLine();
+
+            var orderedItems = linkedList.OrderBy(p=>p.Name,true);
+
+            Console.WriteLine("After Order");
+
+            foreach (var item in orderedItems)
+                Console.WriteLine(item);
+
+            Console.WriteLine();
+            Console.WriteLine("After ordered Original list");
+            Print();
+
+        }
+        private static void OrderByDescending()
+        {
+            linkedList.AddRange(Product.CreateFakeDatas(6));
+            Console.WriteLine("Before Order");
+            Print();
+            Console.WriteLine();
+
+            var orderedItems = linkedList.OrderByDescending(p => p.Name, true);
+
+            Console.WriteLine("After Order");
+
+            foreach (var item in orderedItems)
+                Console.WriteLine(item);
+
+            Console.WriteLine();
+            Console.WriteLine("After ordered Original list");
+            Print();
+
+        }
+        private static void Print()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("\nitems : [\n");
