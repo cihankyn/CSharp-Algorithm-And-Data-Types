@@ -1,5 +1,7 @@
 ﻿using DataStructures.LinkedList.DoublyLinkedList;
 using DataStructures.LinkedList.SinglyLinkedList;
+using DataStructures.Queue.Abstract;
+using DataStructures.Queue.Concrete;
 using DataStructures.Stack.Concrete;
 using Entities;
 using System;
@@ -12,17 +14,137 @@ namespace Apps
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             //ArrayOperations.Start();
             //OneWayListOperations.Start();
             //TwoWayListOperations.Start();
-            StackOperations.Start();
+            //StackOperations.Start();
+            QueueOperations.Start();
             Console.ReadKey();
         }
+    }
+    public class QueueOperations
+    {
+        public static void Start()
+        {
+            ArrayListOperations.Start();
+            LinkedListOperations.Start();
+        }
+
+        // Sub classes
+        class ArrayListOperations
+        {
+            static IQueue<Product> _queue = new ArrayQueue<Product>();
+            public static void Start()
+            {
+                Console.WriteLine("ArrayQueue working...");
+
+                var products = Product.CreateFakeDatas(3);
+
+                Console.WriteLine();
+                Console.WriteLine($"ArrayQueue.Count() => {_queue.Count}");
+                Console.WriteLine();
+
+                products.ForEach(p =>
+                {
+                    _queue.EnQueue(p);
+                    Console.WriteLine($"The {p} added to queue");
+                });
+
+                Console.WriteLine();
+                Console.WriteLine($"ArrayQueue.Count() => {_queue.Count}");
+
+                Console.WriteLine();
+                Console.WriteLine($"ArrayQueue.Peek() => {_queue.Peek()}");
+
+                Console.WriteLine();
+                Console.WriteLine($"ArrayQueue.Count() => {_queue.Count}");
+
+                Console.WriteLine();
+                Console.WriteLine($"ArrayQueue.DeQueue() => {_queue.DeQueue()}");
+
+                Console.WriteLine();
+                Console.WriteLine($"ArrayQueue.Count() => {_queue.Count}");
+
+                Console.WriteLine();
+                Console.WriteLine($"ArrayQueue.DeQueue() => {_queue.DeQueue()}");
+
+                Console.WriteLine();
+                Console.WriteLine($"ArrayQueue.Count() => {_queue.Count}");
+
+                Console.WriteLine();
+                Console.WriteLine($"ArrayQueue.DeQueue() => {_queue.DeQueue()}");
+
+                Console.WriteLine();
+                Console.WriteLine($"ArrayQueue.Count() => {_queue.Count}");
+
+                //Throws error: because all items removed.
+                Console.WriteLine();
+                Console.WriteLine($"ArrayQueue.DeQueue() => {_queue.DeQueue()}");
+
+                Console.WriteLine();
+                Console.WriteLine($"ArrayQueue.Count() => {_queue.Count}");
 
 
+            }
+        }
+        class LinkedListOperations
+        {
+            static IQueue<Product> _queue = new LinkedListQueue<Product>();
+            public static void Start()
+            {
+                Console.WriteLine("ArrayQueue working...");
+
+                var products = Product.CreateFakeDatas(3);
+
+                Console.WriteLine();
+                Console.WriteLine($"LinkedLinsQueue.Count() => {_queue.Count}");
+                Console.WriteLine();
+
+                products.ForEach(p =>
+                {
+                    _queue.EnQueue(p);
+                    Console.WriteLine($"The {p} added to queue");
+                });
+
+                Console.WriteLine();
+                Console.WriteLine($"LinkedListQueue.Count() => {_queue.Count}");
+
+                Console.WriteLine();
+                Console.WriteLine($"LinkedListQueue.Peek() => {_queue.Peek()}");
+
+                Console.WriteLine();
+                Console.WriteLine($"LinkedListQueue.Count() => {_queue.Count}");
+
+                Console.WriteLine();
+                Console.WriteLine($"LinkedListQueue.DeQueue() => {_queue.DeQueue()}");
+
+                Console.WriteLine();
+                Console.WriteLine($"LinkedListQueue.Count() => {_queue.Count}");
+
+                Console.WriteLine();
+                Console.WriteLine($"LinkedListQueue.DeQueue() => {_queue.DeQueue()}");
+
+                Console.WriteLine();
+                Console.WriteLine($"LinkedListQueue.Count() => {_queue.Count}");
+
+                Console.WriteLine();
+                Console.WriteLine($"LinkedListQueue.DeQueue() => {_queue.DeQueue()}");
+
+                Console.WriteLine();
+                Console.WriteLine($"LinkedListQueue.Count() => {_queue.Count}");
+
+                //Throws error: because all items removed.
+                Console.WriteLine();
+                Console.WriteLine($"LinkedListQueue.DeQueue() => {_queue.DeQueue()}");
+
+                Console.WriteLine();
+                Console.WriteLine($"LinkedListQueue.Count() => {_queue.Count}");
+
+
+            }
+        }
     }
     public class StackOperations
     {
@@ -32,9 +154,11 @@ namespace Apps
             LinkedListOperations.Start();
         }
 
+        // Sub classes
+
         class ArrayListOperations
         {
-            static  DataStructures.Stack.Concrete.Stack<Product> _stack = new DataStructures.Stack.Concrete.Stack<Product>(new ArrayStack<Product>());
+            static DataStructures.Stack.Concrete.Stack<Product> _stack = new DataStructures.Stack.Concrete.Stack<Product>(new ArrayStack<Product>());
             public static void Start()
             {
                 Console.WriteLine("ArrayStack working...");
@@ -81,44 +205,44 @@ namespace Apps
             static DataStructures.Stack.Concrete.Stack<Product> _stack = new DataStructures.Stack.Concrete.Stack<Product>(new LinkedListStack<Product>());
             public static void Start()
             {
-               
-                    Console.WriteLine("LinkedListStack working...");
 
-                    var products = Product.CreateFakeDatas(5);
+                Console.WriteLine("LinkedListStack working...");
 
-                    Console.WriteLine();
-                    Console.WriteLine($"Stack.Count() => {_stack.Count}");
-                    Console.WriteLine();
+                var products = Product.CreateFakeDatas(5);
 
-                    products.ForEach(p =>
-                    {
-                        _stack.Push(p);
-                        Console.WriteLine($"The {p} added to stack");
-                    });
+                Console.WriteLine();
+                Console.WriteLine($"Stack.Count() => {_stack.Count}");
+                Console.WriteLine();
 
-                    Console.WriteLine();
-                    Console.WriteLine($"Stack.Count() => {_stack.Count}");
+                products.ForEach(p =>
+                {
+                    _stack.Push(p);
+                    Console.WriteLine($"The {p} added to stack");
+                });
 
-                    Console.WriteLine();
-                    Console.WriteLine($"Stack.Peek() => {_stack.Peek()}");
+                Console.WriteLine();
+                Console.WriteLine($"Stack.Count() => {_stack.Count}");
 
-                    Console.WriteLine();
-                    Console.WriteLine($"Stack.Count() => {_stack.Count}");
+                Console.WriteLine();
+                Console.WriteLine($"Stack.Peek() => {_stack.Peek()}");
 
-                    Console.WriteLine();
-                    Console.WriteLine($"Stack.Pop() => {_stack.Pop()}");
+                Console.WriteLine();
+                Console.WriteLine($"Stack.Count() => {_stack.Count}");
 
-                    Console.WriteLine();
-                    Console.WriteLine($"Stack.Count() => {_stack.Count}");
+                Console.WriteLine();
+                Console.WriteLine($"Stack.Pop() => {_stack.Pop()}");
 
-                    Console.WriteLine();
-                    Console.WriteLine($"Stack.Pop() => {_stack.Pop()}");
+                Console.WriteLine();
+                Console.WriteLine($"Stack.Count() => {_stack.Count}");
 
-                    Console.WriteLine();
-                    Console.WriteLine($"Stack.Count() => {_stack.Count}");
+                Console.WriteLine();
+                Console.WriteLine($"Stack.Pop() => {_stack.Pop()}");
+
+                Console.WriteLine();
+                Console.WriteLine($"Stack.Count() => {_stack.Count}");
 
 
-                
+
             }
         }
 
@@ -232,7 +356,7 @@ namespace Apps
 
             //Console.WriteLine($"{linkedlist.RemoveFirst()} (removed)");
             //Console.WriteLine($"{linkedlist.RemoveLast()} (removed)");
-            
+
             linkedlist.Remove(linkedlist.Head);
             //linkedlist.Remove(linkedlist.Tail);
             //linkedlist.Remove(linkedlist.Head.Next);

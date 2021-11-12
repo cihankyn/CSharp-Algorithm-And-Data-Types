@@ -5,21 +5,22 @@ namespace DataStructures.Stack.Concrete
 {
     public class LinkedListStack<T> : IStack<T>
     {
-        private readonly SinglyLinkedList<T> list = new SinglyLinkedList<T>();
-        public int Count => list.Count;
+        //We will use SinglyLinkedList on this scenario.You can find this definition under of DataStructures.SinglyLinkedList
+        private readonly SinglyLinkedList<T> _list = new SinglyLinkedList<T>();
+        public int Count => _list.Count;
 
         public T Peek()
         {
             if (Count == 0)
                 Constants.Constant.ThrowIfStackIsNull();
-            return list.GetFirst.Value;
+            return _list.GetFirst.Value;
         }
 
         public T Pop()
         {
             if (Count == 0)
                 Constants.Constant.ThrowIfStackIsNull();
-            return list.RemoveFirst();
+            return _list.RemoveFirst();
         }
 
         public void Push(T value)
@@ -28,8 +29,8 @@ namespace DataStructures.Stack.Concrete
             if (value is null)
                 Constants.Constant.ThrowIfStackIsNull();
 
-            // We will add front of list
-            list.AddFirst(value);
+            // We will add front of _list
+            _list.AddFirst(value);
         }
     }
 }
