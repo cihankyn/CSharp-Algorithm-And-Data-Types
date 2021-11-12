@@ -1,10 +1,9 @@
-﻿using DataStructures.LinkedList.SinglyLinkedList.Concrete;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataStructures.LinkedList.SinglyLinkedList.Concrete
+namespace DataStructures.LinkedList.SinglyLinkedList
 {
     public partial class SinglyLinkedList<T> : IEnumerable<T>
     {

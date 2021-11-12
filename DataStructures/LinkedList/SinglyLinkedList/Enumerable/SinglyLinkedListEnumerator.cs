@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace DataStructures.LinkedList.SinglyLinkedList.Concrete
+namespace DataStructures.LinkedList.SinglyLinkedList
 {
     internal class SinglyLinkedListEnumerator<T> : IEnumerator<T>
     {

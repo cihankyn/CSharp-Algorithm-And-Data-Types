@@ -1,4 +1,5 @@
-﻿using DataStructures.LinkedList.SinglyLinkedList.Concrete;
+﻿using DataStructures.LinkedList.DoublyLinkedList;
+using DataStructures.LinkedList.SinglyLinkedList;
 using Entities;
 using System;
 using System.Collections;
@@ -14,15 +15,201 @@ namespace Apps
         static void Main(string[] args)
         {
             //ArrayOperations.Start();
-            OneWayListOperations.Start();
+            //OneWayListOperations.Start();
+            TwoWayListOperations.Start();
             Console.ReadKey();
         }
 
 
     }
+    class TwoWayListOperations
+    {
+        private static DoublyLinkedList<Product> linkedlist = new DoublyLinkedList<Product>();
+        public static void Start()
+        {
+            //AddFirst();
+            //AddLast();
+            //AddAfter();
+            //AddBefore();
+            //GetAllNodes();
+            //Constructors();
+            Remove();
+            //Properties();
+        }
+        private static void AddFirst()
+        {
+            linkedlist.AddFirst(Product.GetFakeProduct());
+            linkedlist.AddFirst(Product.GetFakeProduct());
+            linkedlist.AddFirst(Product.GetFakeProduct());
+            linkedlist.AddFirst(Product.GetFakeProduct());
+            Print();
+        }
+        private static void AddLast()
+        {
+            linkedlist.AddLast(Product.GetFakeProduct());
+            linkedlist.AddLast(Product.GetFakeProduct());
+            linkedlist.AddLast(Product.GetFakeProduct());
+            linkedlist.AddLast(Product.GetFakeProduct());
+            Print();
+        }
+        private static void AddAfter()
+        {
+            linkedlist.AddLast(Product.GetFakeProduct());
+            linkedlist.AddLast(Product.GetFakeProduct());
+            linkedlist.AddLast(Product.GetFakeProduct());
+            linkedlist.AddLast(Product.GetFakeProduct());
+
+            Console.WriteLine("Before");
+            Print();
+
+            var afterNode = linkedlist.Head;// Adds to after head
+
+            afterNode = linkedlist.Head.Next;// Adds to after head.next
+
+            afterNode = linkedlist.Head.Next.Next.Next; //Adds to after last item
+
+            // This node is not in the list
+            afterNode = new DoublyLinkedListNode<Product>(Product.GetFakeProduct());
+
+            afterNode = null; // Throws ArgumentNullException
+
+            linkedlist.AddAfter(afterNode, Product.GetFakeProduct());
+            Console.WriteLine("After");
+            Print();
+        }
+        private static void AddBefore()
+        {
+            linkedlist.AddLast(Product.GetFakeProduct());
+            linkedlist.AddLast(Product.GetFakeProduct());
+            linkedlist.AddLast(Product.GetFakeProduct());
+            linkedlist.AddLast(Product.GetFakeProduct());
+
+            Console.WriteLine("Before");
+            Print();
+
+            var beforeNode = linkedlist.Head;// Adds to before of head
+
+            beforeNode = linkedlist.Head.Next;// Adds to before head.next
+
+            beforeNode = linkedlist.Head.Next.Next.Next; //Adds to before last item
+
+            // This node is not in the list
+            beforeNode = new DoublyLinkedListNode<Product>(Product.GetFakeProduct());
+
+            beforeNode = null; // Throws ArgumentNullException
+
+            linkedlist.AddBefore(beforeNode, Product.GetFakeProduct());
+            Console.WriteLine("After");
+            Print();
+        }
+        private static void GetAllNodes()
+        {
+            Product.CreateFakeDatas(15).ForEach(p => linkedlist.AddLast(p));
+
+            foreach (var item in linkedlist)
+                Console.WriteLine(item);
+        }
+        private static void Constructors()
+        {
+            var list = Product.CreateFakeDatas(5);
+            var arr = list.ToArray();
+
+            linkedlist = new DoublyLinkedList<Product>(arr);
+
+            linkedlist = new DoublyLinkedList<Product>(Product.GetFakeProduct(), Product.GetFakeProduct(), Product.GetFakeProduct());
+            Print();
+        }
+        private static void Remove()
+        {
+            Product.CreateFakeDatas(1).ForEach(p => linkedlist.AddLast(p));
+            Console.WriteLine("Before");
+            Print();
+            Console.WriteLine();
+            Console.WriteLine("After");
+
+
+            //Console.WriteLine($"{linkedlist.RemoveFirst()} (removed)");
+            //Console.WriteLine($"{linkedlist.RemoveLast()} (removed)");
+            
+            linkedlist.Remove(linkedlist.Head);
+            //linkedlist.Remove(linkedlist.Tail);
+            //linkedlist.Remove(linkedlist.Head.Next);
+            //linkedlist.Remove(new DoublyLinkedListNode<Product>(Product.GetFakeProduct()));//Throws error
+            Print();
+        }
+        private static void Properties()
+        {
+            Product.CreateFakeDatas(5).ForEach(p => linkedlist.AddLast(p));
+            Console.WriteLine("items : \n [");
+
+            foreach (var item in linkedlist)
+                Console.WriteLine($"\t{item}");
+            Console.WriteLine(" ]");
+            Console.WriteLine();
+            Console.WriteLine($"Head : {linkedlist.GetFirst}");
+            Console.WriteLine($"Tail : {linkedlist.GetLast}");
+            Console.WriteLine($"Count : {linkedlist.Count}");
+        }
+        private static void Print()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(" Items : [\n");
+            var current = linkedlist.Head;
+            while (current is not null)
+            {
+                sb.Append($" \t{current.Value} \n");
+                current = current.Next;
+            }
+            sb.Append(" ]\n");
+            if (linkedlist.Head is not null)
+                sb.Append($"Head : {linkedlist.Head.Value}\n");
+            if (linkedlist.Tail is not null)
+                sb.Append($"Tail : {linkedlist.Tail.Value}\n");
+            Console.WriteLine(sb);
+        }
+    }
+    class ArrayOperations
+    {
+        private static DataStructures.Array.Array<int> arr = new DataStructures.Array.Array<int>();
+        public static void Start()
+        {
+            AddSomeItems(150);
+            Console.WriteLine();
+            RemoveSomeItems(28);
+            Console.WriteLine();
+            Clone();
+            Console.WriteLine();
+        }
+        private static void AddSomeItems(int count)
+        {
+            Console.WriteLine("-- AddSomeItems --");
+
+            for (int i = 0; i < count; i++)
+            {
+                arr.Add(i + 1);
+            }
+            Console.WriteLine(arr.ToString());
+        }
+        private static void RemoveSomeItems(int count)
+        {
+            Console.WriteLine("-- RemoveSomeItems --");
+
+            for (int i = 1; i < count; i++)
+            {
+                arr.Remove(i);
+            }
+            Console.WriteLine(arr.ToString());
+        }
+        private static void Clone()
+        {
+            Console.WriteLine("-- Clone --");
+            var crr = arr.Clone();
+            Console.WriteLine(crr.ToString());
+        }
+    }
     class OneWayListOperations
     {
-        public static SinglyLinkedList<Product> linkedList = new SinglyLinkedList<Product>();
+        private static SinglyLinkedList<Product> linkedList = new SinglyLinkedList<Product>();
         public static void Start()
         {
             //ConstuctorOverloads();
@@ -188,7 +375,7 @@ namespace Apps
             Print();
             Console.WriteLine();
 
-            var orderedItems = linkedList.OrderBy(p=>p.Name,true);
+            var orderedItems = linkedList.OrderBy(p => p.Name, true);
 
             Console.WriteLine("After Order");
 
@@ -221,7 +408,7 @@ namespace Apps
         }
         private static void GetOperations()
         {
-    
+
             linkedList.AddRange(Product.CreateFakeDatas(10));
             Console.WriteLine($"Linkedlist items count : {linkedList.Count}");
             Print();
@@ -239,45 +426,6 @@ namespace Apps
                 sb.Append("\t").Append(item).Append("\n");
             sb.Append(" ]\n");
             Console.WriteLine(sb.ToString());
-        }
-    }
-    class ArrayOperations
-    {
-        private static DataStructures.Array.Array<int> arr = new DataStructures.Array.Array<int>();
-        public static void Start()
-        {
-            AddSomeItems(150);
-            Console.WriteLine();
-            RemoveSomeItems(28);
-            Console.WriteLine();
-            Clone();
-            Console.WriteLine();
-        }
-        private static void AddSomeItems(int count)
-        {
-            Console.WriteLine("-- AddSomeItems --");
-
-            for (int i = 0; i < count; i++)
-            {
-                arr.Add(i + 1);
-            }
-            Console.WriteLine(arr.ToString());
-        }
-        private static void RemoveSomeItems(int count)
-        {
-            Console.WriteLine("-- RemoveSomeItems --");
-
-            for (int i = 1; i < count; i++)
-            {
-                arr.Remove(i);
-            }
-            Console.WriteLine(arr.ToString());
-        }
-        private static void Clone()
-        {
-            Console.WriteLine("-- Clone --");
-            var crr = arr.Clone();
-            Console.WriteLine(crr.ToString());
         }
     }
 }

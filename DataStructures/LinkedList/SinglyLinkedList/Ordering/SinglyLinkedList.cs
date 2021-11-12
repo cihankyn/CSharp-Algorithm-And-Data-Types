@@ -1,12 +1,11 @@
-﻿using DataStructures.LinkedList.SinglyLinkedList.Concrete;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DataStructures.LinkedList.SinglyLinkedList.Concrete
+namespace DataStructures.LinkedList.SinglyLinkedList
 {
     public partial class SinglyLinkedList<T> : IEnumerable<T>
     {
