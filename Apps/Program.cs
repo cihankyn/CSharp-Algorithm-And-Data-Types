@@ -1,5 +1,6 @@
 ﻿using DataStructures.LinkedList.DoublyLinkedList;
 using DataStructures.LinkedList.SinglyLinkedList;
+using DataStructures.Stack.Concrete;
 using Entities;
 using System;
 using System.Collections;
@@ -16,8 +17,109 @@ namespace Apps
         {
             //ArrayOperations.Start();
             //OneWayListOperations.Start();
-            TwoWayListOperations.Start();
+            //TwoWayListOperations.Start();
+            StackOperations.Start();
             Console.ReadKey();
+        }
+
+
+    }
+    public class StackOperations
+    {
+        public static void Start()
+        {
+            ArrayListOperations.Start();
+            LinkedListOperations.Start();
+        }
+
+        class ArrayListOperations
+        {
+            static  DataStructures.Stack.Concrete.Stack<Product> _stack = new DataStructures.Stack.Concrete.Stack<Product>(new ArrayStack<Product>());
+            public static void Start()
+            {
+                Console.WriteLine("ArrayStack working...");
+
+                var products = Product.CreateFakeDatas(5);
+
+                Console.WriteLine();
+                Console.WriteLine($"Stack.Count() => {_stack.Count}");
+                Console.WriteLine();
+
+                products.ForEach(p =>
+                {
+                    _stack.Push(p);
+                    Console.WriteLine($"The {p} added to stack");
+                });
+
+                Console.WriteLine();
+                Console.WriteLine($"Stack.Count() => {_stack.Count}");
+
+                Console.WriteLine();
+                Console.WriteLine($"Stack.Peek() => {_stack.Peek()}");
+
+                Console.WriteLine();
+                Console.WriteLine($"Stack.Count() => {_stack.Count}");
+
+                Console.WriteLine();
+                Console.WriteLine($"Stack.Pop() => {_stack.Pop()}");
+
+                Console.WriteLine();
+                Console.WriteLine($"Stack.Count() => {_stack.Count}");
+
+                Console.WriteLine();
+                Console.WriteLine($"Stack.Pop() => {_stack.Pop()}");
+
+                Console.WriteLine();
+                Console.WriteLine($"Stack.Count() => {_stack.Count}");
+
+
+            }
+        }
+
+        class LinkedListOperations
+        {
+            static DataStructures.Stack.Concrete.Stack<Product> _stack = new DataStructures.Stack.Concrete.Stack<Product>(new LinkedListStack<Product>());
+            public static void Start()
+            {
+               
+                    Console.WriteLine("LinkedListStack working...");
+
+                    var products = Product.CreateFakeDatas(5);
+
+                    Console.WriteLine();
+                    Console.WriteLine($"Stack.Count() => {_stack.Count}");
+                    Console.WriteLine();
+
+                    products.ForEach(p =>
+                    {
+                        _stack.Push(p);
+                        Console.WriteLine($"The {p} added to stack");
+                    });
+
+                    Console.WriteLine();
+                    Console.WriteLine($"Stack.Count() => {_stack.Count}");
+
+                    Console.WriteLine();
+                    Console.WriteLine($"Stack.Peek() => {_stack.Peek()}");
+
+                    Console.WriteLine();
+                    Console.WriteLine($"Stack.Count() => {_stack.Count}");
+
+                    Console.WriteLine();
+                    Console.WriteLine($"Stack.Pop() => {_stack.Pop()}");
+
+                    Console.WriteLine();
+                    Console.WriteLine($"Stack.Count() => {_stack.Count}");
+
+                    Console.WriteLine();
+                    Console.WriteLine($"Stack.Pop() => {_stack.Pop()}");
+
+                    Console.WriteLine();
+                    Console.WriteLine($"Stack.Count() => {_stack.Count}");
+
+
+                
+            }
         }
 
 
